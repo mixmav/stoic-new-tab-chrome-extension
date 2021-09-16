@@ -4,9 +4,9 @@
 	"version": "1.0",
 	"manifest_version": 3,
 	"icons": {
-		"16": "icon16.png",
-		"48": "icon48.png",
-		"128": "icon128.png"
+		"16": "./src/img/icon16.png",
+		"48": "./src/img/icon48.png",
+		"128": "./src/img/icon128.png"
 	},
 	"chrome_url_overrides" : {
 		"newtab": "newTab.html"

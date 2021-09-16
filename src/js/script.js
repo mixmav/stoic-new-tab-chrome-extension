@@ -1,7 +1,37 @@
-{
+$(function(){
+	$quote = $('#quote');
+	$author = $('#author');
+	$date = $('#date');
+	$.ajax({
+		method: 'GET',
+		url: 'https://stoicquotesapi.com/v1/api/quotes/random',
+		success: function(data){
+			$quote.html(data.body);
+			$author.html(data.author);
+		}
+	});
+	
+
+	setTimeout(function(){
+		document.querySelector('.content').addEventListener('mousemove', e => { 
+			var e = document.createEvent('MouseEvents');
+			e.initMouseEvent('mousemove',true,true,document.defaultView, 0, event.screenX, event.screenY, event.clientX, event.clientY,false,false,false,false,null,null);
+			document.getElementById("particles-js").childNodes[0].dispatchEvent(e) 
+		});
+	}, 600);
+	
+	$('#date').html(dayjs().format('dddd D MMM, h:mm A'));
+	setInterval(() => {
+		$('#date').html(dayjs().format('dddd D MMM, h:mmA'));
+	}, 60000);
+
+	particlesJS('particles-js', particlesJSON);
+});
+
+var particlesJSON = {
 	"particles": {
 	  "number": {
-		"value": 80,
+		"value": 70,
 		"density": {
 		  "enable": true,
 		  "value_area": 800
@@ -36,8 +66,8 @@
 		}
 	  },
 	  "size": {
-		"value": 5,
-		"random": true,
+		"value": 1,
+		"random": false,
 		"anim": {
 		  "enable": false,
 		  "speed": 40,
@@ -58,7 +88,8 @@
 		"direction": "none",
 		"random": false,
 		"straight": false,
-		"out_mode": "out",
+		"out_mode": "bounce",
+		"bounce": false,
 		"attract": {
 		  "enable": false,
 		  "rotateX": 600,
@@ -94,7 +125,8 @@
 		  "speed": 3
 		},
 		"repulse": {
-		  "distance": 200
+		  "distance": 200,
+		  "duration": 0.4
 		},
 		"push": {
 		  "particles_nb": 4
@@ -104,13 +136,5 @@
 		}
 	  }
 	},
-	"retina_detect": true,
-	"config_demo": {
-	  "hide_card": false,
-	  "background_color": "#b61924",
-	  "background_image": "",
-	  "background_position": "50% 50%",
-	  "background_repeat": "no-repeat",
-	  "background_size": "cover"
-	}
-  }
+	"retina_detect": true
+}
